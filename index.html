@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manaswini’s Cartoon Portfolio</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -21,7 +22,8 @@
       height: 100vh;
       background: #000000;
       z-index: 10000;
-      display: none; /* Initially hidden */
+      display: block;
+      opacity: 1;
     }
     .video-background, .gif-background {
       position: absolute;
@@ -36,8 +38,8 @@
       position: relative;
       min-height: 100vh;
       background: rgba(255, 255, 255, 0.3);
-      opacity: 0; /* Start hidden for wave animation */
-      animation: waveIn 1.5s ease-out forwards; /* Wave animation on load or return */
+      display: none;
+      animation: waveIn 1.5s ease-out forwards;
     }
     @keyframes waveIn {
       0% { opacity: 0; transform: translateY(100px) skewY(5deg); }
@@ -102,12 +104,12 @@
       background: transparent;
       border-radius: 20px;
       margin: 20px;
-      width: calc(50% - 40px); /* Two sections per row with spacing */
+      width: calc(50% - 40px);
       border: 4px solid #4CAF50;
       text-align: center;
       display: inline-block;
       vertical-align: top;
-      min-height: 300px; /* Ensure consistent height */
+      min-height: 300px;
     }
     .video-section, .gif-section {
       position: relative;
@@ -208,7 +210,7 @@
         font-size: 1.25rem;
       }
       .section {
-        width: 100%; /* Stack sections vertically on mobile */
+        width: 100%;
         margin: 10px 0;
       }
     }
@@ -225,124 +227,18 @@
     .intro-text .magic-text:nth-child(3) { animation-delay: 1s; }
     .intro-text .magic-text:nth-child(4) { animation-delay: 1.5s; }
   </style>
-</head>
-<body>
-  <!-- Holographic Grid Animation Container -->
-  <div id="intro-animation-container"></div>
-
-  <!-- Hero Section with Video Background -->
-  <section class="min-h-screen relative">
-    <video autoplay muted loop class="video-background">
-      <source src="https://cdn.pixabay.com/video/2025/03/29/268528_large.mp4" type="video/mp4">
-    </video>
-    <div class="content-overlay flex items-center justify-center text-center">
-      <div class="z-10">
-        <div class="heading-wrapper">
-          <h1 class="text-6xl font-bold">Welcome to My World</h1>
-        </div>
-        <div class="intro-card relative" id="intro-text">
-          <div class="intro-text">
-            <p class="magic-text">Hi, I’m Manaswini Sri Lasya Priya,</p>
-            <p class="magic-text">a Computer Science undergraduate with a passion for crafting dynamic web applications,</p>
-            <p class="magic-text">diving into data science, and mastering Java.</p>
-            <p class="magic-text">Explore my portfolio to discover more about my journey and creations!</p>
-          </div>
-          <div class="flower-bg absolute top-0 left-0" style="transform: translate(-50%, -50%);"></div>
-          <div class="flower-bg absolute bottom-0 right-0" style="transform: translate(50%, 50%);"></div>
-        </div>
-        <a href="#" class="flower-button mt-6 inline-block" onclick="scrollToSections(event)">Explore My Work</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sections Container for Grid Layout -->
-  <div class="container mx-auto px-4">
-    <div class="flex flex-wrap justify-center">
-      <!-- Certifications Section -->
-      <section id="certifications" class="section gif-section">
-        <img src="https://documill.com/wp-content/uploads/2022/07/salesforce-certifications.gif" alt="Certifications Background" class="gif-background">
-        <div class="video-overlay">
-          <div class="heading-wrapper">
-            <a href="certificates.html" style="text-decoration: none;">
-              <h2 class="text-5xl font-bold">Certifications</h2>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-      <section id="projects" class="section video-section">
-        <video autoplay muted loop class="video-background">
-          <source src="https://cdn.pixabay.com/video/2019/09/12/26796-359604154_large.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay">
-          <div class="heading-wrapper">
-            <a href="projects.html" style="text-decoration: none;">
-              <h2 class="text-5xl font-bold">Projects</h2>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Internships Section -->
-      <section id="internships" class="section gif-section">
-        <img src="https://cdn.dribbble.com/userupload/23717083/file/original-4b25943593af1b7129dea8de29ce1865.gif" alt="Internships Background" class="gif-background">
-        <div class="video-overlay">
-          <div class="heading-wrapper">
-            <a href="internships.html" style="text-decoration: none;">
-              <h2 class="text-5xl font-bold">Internships</h2>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Extra Curricular Certifications Section -->
-      <section id="extra-curricular-certifications" class="section gif-section">
-        <img src="https://i.pinimg.com/originals/2e/03/a2/2e03a23bee794a918664eb16968cf689.gif" alt="Extra Curricular Certifications Background" class="gif-background">
-        <div class="video-overlay">
-          <div class="heading-wrapper">
-            <a href="extra.html" style="text-decoration: none;">
-              <h2 class="text-5xl font-bold">Extra Curricular Certifications</h2>
-            </a>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <!-- Get in Touch Section -->
-  <section id="get-in-touch" class="min-h-screen flex items-center justify-center">
-    <div class="video-overlay w-full">
-      <div class="max-w-md mx-auto text-center">
-        <div class="heading-wrapper">
-          <h2 class="text-5xl font-bold">Get in Touch</h2>
-        </div>
-        <div class="content-card mt-6">
-          <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded-lg bg-white">
-          <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded-lg bg-white">
-          <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded-lg h-32 bg-white"></textarea>
-          <button class="flower-button">Send Message</button>
-          <div class="flower-bg absolute top-10 right-10"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="bg-purple-900 text-white text-center py-4 relative">
-    <p>© 2025 Manaswini Sri Lasya Priya. All rights reserved.</p>
-    <div class="flower-bg absolute top-2 left-10"></div>
-  </footer>
-
   <script>
     let particles = [];
     let stars = [];
     let gridNodes = [];
+    let sparkles = [];
     let phase = 'galaxy';
     let burstTime = 0;
     let textAlpha = 0;
-    let p5Instance = null; // To store the p5 instance and prevent reinitialization
+    let p5Instance = null;
 
-    // Use sessionStorage to track if intro has played
+    // For testing: Clear sessionStorage to ensure animation plays every time
+    sessionStorage.removeItem('introPlayed');
     let introPlayed = sessionStorage.getItem('introPlayed') === 'true';
 
     class Particle {
@@ -408,6 +304,27 @@
       }
     }
 
+    class Sparkle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = random(2, 5);
+        this.alpha = random(100, 255);
+        this.vx = random(-1, 1);
+        this.vy = random(-1, 1);
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= 2;
+      }
+      draw() {
+        noStroke();
+        fill(255, 215, 0, this.alpha); // Gold sparkles
+        ellipse(this.x, this.y, this.size);
+      }
+    }
+
     function setup() {
       try {
         createCanvas(windowWidth, windowHeight);
@@ -416,22 +333,28 @@
         if (container) {
           container.innerHTML = '';
           container.appendChild(canvas);
-          console.log("Setup complete: Canvas initialized with 200 galaxy particles at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+          console.log("Setup: Canvas initialized with 200 galaxy particles at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
         } else {
-          console.error("Intro animation container not found at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+          console.error("Setup: Intro animation container not found at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+          showContent();
         }
         colorMode(HSB, 360, 100, 100, 255);
         for (let i = 0; i < 200; i++) {
           particles.push(new Particle());
         }
+        for (let i = 0; i < 20; i++) {
+          sparkles.push(new Sparkle(width / 2 + random(-200, 200), height / 2 + random(-100, 100)));
+        }
       } catch (e) {
         console.error("Setup error:", e.message, e.stack, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        showContent();
       }
     }
 
     function draw() {
       try {
         background(0);
+        console.log("Draw: Current phase:", phase, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
         if (phase === 'galaxy' && !introPlayed) {
           for (let p of particles) {
             p.update();
@@ -491,28 +414,32 @@
               }
             }
           }
+          for (let s of sparkles) {
+            s.update();
+            s.draw();
+            if (s.alpha <= 0) {
+              sparkles.splice(sparkles.indexOf(s), 1);
+              sparkles.push(new Sparkle(width / 2 + random(-200, 200), height / 2 + random(-100, 100)));
+            }
+          }
           colorMode(RGB, 255, 255, 255, 255);
           textAlpha = lerp(textAlpha, 255, 0.02);
-          fill(255, 255, 255, textAlpha);
           textAlign(CENTER, CENTER);
-          textSize(64);
-          textStyle(BOLD);
-          drawingContext.shadowColor = 'rgba(0, 0, 0, 0.8)';
+          textFont('Lobster');
+          drawingContext.letterSpacing = '3px';
+          drawingContext.shadowColor = 'rgba(192, 192, 192, 0.8)';
           drawingContext.shadowBlur = 10;
 
+          textSize(80);
           let gradient = drawingContext.createLinearGradient(width / 2 - 200, 0, width / 2 + 200, 0);
-          gradient.addColorStop(0, '#800080');
-          gradient.addColorStop(0.5, '#FFD700');
-          gradient.addColorStop(1, '#800080');
+          gradient.addColorStop(0, '#0000FF');
+          gradient.addColorStop(0.5, '#C0C0C0');
+          gradient.addColorStop(1, '#0000FF');
           drawingContext.fillStyle = gradient;
           text("Welcome to My Portfolio", width / 2, height / 2 - 60);
 
           textSize(36);
-          let gradient2 = drawingContext.createLinearGradient(width / 2 - 200, 0, width / 2 + 200, 0);
-          gradient2.addColorStop(0, '#00CED1');
-          gradient2.addColorStop(0.5, '#FF00FF');
-          gradient2.addColorStop(1, '#00CED1');
-          drawingContext.fillStyle = gradient2;
+          drawingContext.fillStyle = gradient;
           text("Showcasing My Journey & Achievements", width / 2, height / 2 + 60);
 
           drawingContext.shadowBlur = 0;
@@ -520,75 +447,223 @@
           if (textAlpha > 250) {
             let container = document.getElementById('intro-animation-container');
             if (container) {
-              container.style.transition = 'opacity 2s ease-out';
+              container.style.transition = 'opacity 1s ease-out';
               container.style.opacity = '0';
               setTimeout(() => {
                 container.style.display = 'none';
+                document.querySelector('.content-overlay').style.display = 'block';
                 noLoop();
                 introPlayed = true;
-                sessionStorage.setItem('introPlayed', 'true'); // Persist the flag
-                console.log("Intro animation completed, showing portfolio at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
-              }, 2000);
+                sessionStorage.setItem('introPlayed', 'true');
+                console.log("Intro animation completed at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+              }, 1000);
             }
           }
         }
       } catch (e) {
         console.error("Draw error in phase", phase, ":", e.message, e.stack, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        showContent();
       }
     }
 
-    window.addEventListener('load', () => {
-      const introContainer = document.getElementById('intro-animation-container');
-      const contentOverlay = document.querySelector('.content-overlay');
-
-      if (!introPlayed) {
-        console.log("Starting intro animation at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
-        introContainer.style.display = 'block';
-        introContainer.style.opacity = '1';
-        p5Instance = new p5(() => {
-          setup();
-          draw();
-        });
-      } else {
-        contentOverlay.style.animation = 'waveIn 1.5s ease-out forwards'; // Apply wave animation on return
+    function showContent() {
+      let container = document.getElementById('intro-animation-container');
+      let contentOverlay = document.querySelector('.content-overlay');
+      if (container) container.style.display = 'none';
+      if (contentOverlay) {
+        contentOverlay.style.display = 'block';
+        contentOverlay.style.animation = 'waveIn 1.5s ease-out forwards';
       }
+      noLoop();
+      console.log("Fallback: Showing content without animation at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+    }
 
-      const flowers = document.querySelectorAll('.flower-bg');
-      flowers.forEach(flower => {
-        flower.style.animationDelay = `${Math.random() * 5}s`;
-      });
+    if (!introPlayed) {
+      try {
+        p5Instance = new p5((p) => {
+          p.setup = setup;
+          p.draw = draw;
+        }, document.getElementById('intro-animation-container'));
+        console.log("p5.js initialized at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+      } catch (e) {
+        console.error("p5.js initialization error:", e.message, e.stack, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        showContent();
+      }
+    } else {
+      document.getElementById('intro-animation-container').style.display = 'none';
+      document.querySelector('.content-overlay').style.display = 'block';
+      document.querySelector('.content-overlay').style.animation = 'waveIn 1.5s ease-out forwards';
+      console.log("Skipping intro animation (already played) at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+    }
 
-      document.querySelectorAll('.flower-button').forEach(button => {
-        button.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (button.textContent === 'Explore My Work') {
-            scrollToSections(e);
-          } else {
-            const bloom = button.querySelector('::before');
-            bloom.style.transform = 'translate(-50%, -50%) scale(1)';
-            bloom.style.opacity = '0.5';
-            setTimeout(() => {
-              bloom.style.transform = 'translate(-50%, -50%) scale(0)';
-              bloom.style.opacity = '0.7';
-            }, 1000);
+    window.addEventListener('load', () => {
+      try {
+        const flowers = document.querySelectorAll('.flower-bg');
+        flowers.forEach(flower => {
+          flower.style.animationDelay = `${Math.random() * 5}s`;
+        });
+
+        document.querySelectorAll('.flower-button').forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (button.textContent === 'Explore My Work') {
+              scrollToSections(e);
+            } else {
+              const bloom = button.querySelector('::before');
+              if (bloom) {
+                bloom.style.transform = 'translate(-50%, -50%) scale(1)';
+                bloom.style.opacity = '0.5';
+                setTimeout(() => {
+                  bloom.style.transform = 'translate(-50%, -50%) scale(0)';
+                  bloom.style.opacity = '0.7';
+                }, 1000);
+              }
+            }
+          });
+        });
+
+        function scrollToSections(event) {
+          event.preventDefault();
+          document.getElementById('certifications').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.addEventListener('popstate', () => {
+          if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+            if (p5Instance) p5Instance.noLoop();
+            document.getElementById('intro-animation-container').style.display = 'none';
+            let contentOverlay = document.querySelector('.content-overlay');
+            if (contentOverlay) {
+              contentOverlay.style.display = 'block';
+              contentOverlay.style.animation = 'waveIn 1.5s ease-out forwards';
+            }
           }
         });
-      });
-
-      function scrollToSections(event) {
-        event.preventDefault();
-        document.getElementById('certifications').scrollIntoView({ behavior: 'smooth' });
+      } catch (e) {
+        console.error("Window load error:", e.message, e.stack, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        showContent();
       }
-
-      // Handle back navigation from section pages
-      window.addEventListener('popstate', () => {
-        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-          if (p5Instance) p5Instance.noLoop(); // Stop any running p5 instance
-          introContainer.style.display = 'none';
-          contentOverlay.style.animation = 'waveIn 1.5s ease-out forwards';
-        }
-      });
     });
   </script>
+</head>
+<body>
+  <div id="intro-animation-container"></div>
+
+  <section class="min-h-screen relative">
+    <video autoplay muted loop class="video-background">
+      <source src="https://cdn.pixabay.com/video/2025/03/29/268528_large.mp4" type="video/mp4">
+    </video>
+    <div class="content-overlay flex items-center justify-center text-center">
+      <div class="z-10">
+        <div class="heading-wrapper">
+          <h1 class="text-6xl font-bold">Welcome to My World</h1>
+        </div>
+        <div class="intro-card relative" id="intro-text">
+          <div class="intro-text">
+            <p class="magic-text">Hi, I’m Manaswini Sri Lasya Priya,</p>
+            <p class="magic-text">a Computer Science undergraduate with a passion for crafting dynamic web applications,</p>
+            <p class="magic-text">diving into data science, and mastering Java.</p>
+            <p class="magic-text">Explore my portfolio to discover more about my journey and creations!</p>
+          </div>
+          <div class="flower-bg absolute top-0 left-0" style="transform: translate(-50%, -50%);"></div>
+          <div class="flower-bg absolute bottom-0 right-0" style="transform: translate(50%, 50%);"></div>
+        </div>
+        <a href="#" class="flower-button mt-6 inline-block" onclick="scrollToSections(event)">Explore My Work</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap justify-center">
+      <section id="certifications" class="section gif-section">
+        <img src="https://documill.com/wp-content/uploads/2022/07/salesforce-certifications.gif" alt="Certifications Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="certificates.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Certifications</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section video-section">
+        <video autoplay muted loop class="video-background">
+          <source src="https://cdn.pixabay.com/video/2019/09/12/26796-359604154_large.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="projects.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Projects</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="internships" class="section gif-section">
+        <img src="https://cdn.dribbble.com/userupload/23717083/file/original-4b25943593af1b7129dea8de29ce1865.gif" alt="Internships Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="internships.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Internships</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="extra-curricular-certifications" class="section gif-section">
+        <img src="https://i.pinimg.com/originals/2e/03/a2/2e03a23bee794a918664eb16968cf689.gif" alt="Extra Curricular Certifications Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="extra.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Extra Curricular Certifications</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="social-platforms" class="section gif-section">
+        <img src="https://i.pinimg.com/originals/e9/f7/c5/e9f7c599af092d6317691eb406ad4258.gif" alt="Social Platforms Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="social.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Social Platforms</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="my-writings" class="section gif-section">
+        <img src="https://static01.nyt.com/images/2018/03/08/business/08State/8State-articleLarge.gif?quality=75&auto=webp&disable=upscale" alt="My Writings Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="writings.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">My Writings</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section id="get-in-touch" class="min-h-screen flex items-center justify-center">
+    <div class="video-overlay w-full">
+      <div class="max-w-md mx-auto text-center">
+        <div class="heading-wrapper">
+          <h2 class="text-5xl font-bold">Get in Touch</h2>
+        </div>
+        <div class="content-card mt-6">
+          <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded-lg bg-white">
+          <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded-lg bg-white">
+          <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded-lg h-32 bg-white"></textarea>
+          <button class="flower-button">Send Message</button>
+          <div class="flower-bg absolute top-10 right-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-purple-900 text-white text-center py-4 relative">
+    <p>© 2025 Manaswini Sri Lasya Priya. All rights reserved.</p>
+    <div class="flower-bg absolute top-2 left-10"></div>
+  </footer>
 </body>
 </html>
