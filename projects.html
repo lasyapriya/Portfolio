@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Dancing Script', cursive;
+      margin: 0;
+      color: #000000;
+      overflow-x: hidden;
+      position: relative;
+      background: #ffffff;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .heading-wrapper {
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 10;
+    }
+    .heading-wrapper h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      color: #6b21a8;
+      letter-spacing: 0.05em;
+      background: #e9d5ff;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    .project-list {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .project-item {
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+    }
+    .project-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .project-item h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #6b21a8;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+    .project-item p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+    .project-item a {
+      color: #4e59cd;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      font-size: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+    .project-item a:hover {
+      color: #a855f7;
+    }
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+      justify-content: center;
+    }
+    .tech-stack span {
+      background: #e74c3c;
+      color: #ffffff;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="heading-wrapper">
+    <h1>My Projects</h1>
+  </div>
+  <div class="project-list">
+    <div class="project-item">
+      <h2>Event Manager</h2>
+      <p><strong>About:</strong> A web-based application designed to help users organize and manage events efficiently. It allows users to create, update, and track events with a user-friendly interface.</p>
+      <p><strong>My Role:</strong> Led the front-end development and integrated APIs for real-time event updates.</p>
+      <div class="tech-stack">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>React</span>
+      </div>
+      <p><a href="https://lasyapriya.github.io/Event-Manager/" target="_blank">Link to Project</a></p>
+    </div>
+    <div class="project-item">
+      <h2>HCP Campaign Prediction</h2>
+      <p><strong>About:</strong> A machine learning-based tool to predict the availability of healthcare professional based on available regions and given speciality range.(.</p>
+      <p><strong>My Role:</strong> Developed the predictive model front end and deployed the application using Streamlit for interactive data visualization.</p>
+      <div class="tech-stack">
+        <span>Python</span>
+        <span>Machine Learning</span>
+        <span>Streamlit</span>
+        <span>Pandas</span>
+      </div>
+      <p><a href="https://hcpprediction-zeptonaiml.streamlit.app/" target="_blank">Link to Project</a></p>
+    </div>
+    <div class="project-item">
+      <h2>Medical Chatbot</h2>
+      <p><strong>About:</strong> An AI-powered chatbot that provides preliminary medical advice and answers user queries based on trained medical datasets.</p>
+      <p><strong>My Role:</strong> Designed the conversational model and integrated it with a Streamlit-based interface for user interaction.</p>
+      <div class="tech-stack">
+        <span>Python</span>
+        <span>NLP</span>
+        <span>Streamlit</span>
+        <span>TensorFlow</span>
+      </div>
+      <p><a href="https://32sqmokuee9fhmedp6hd3e.streamlit.app/" target="_blank">Link to Project</a></p>
+    </div>
+    <div class="project-item">
+      <h2>Question Answering Model</h2>
+      <p><strong>About:</strong> A deep learning model that answers user questions based on a provided context or specific documents, optimized for accuracy and speed.</p>
+      <p><strong>My Role:</strong> Trained the transformer-based model and created a web interface for easy access.</p>
+      <div class="tech-stack">
+        <span>Python</span>
+        <span>Transformers</span>
+        <span>Streamlit</span>
+        <span>Hugging Face</span>
+      </div>
+      <p><a href="https://docnew-wcf3uhvhyy54gquxojef5m.streamlit.app/" target="_blank">Link to Project</a></p>
+    </div>
+    <div class="project-item">
+      <h2>Medical Image Generator</h2>
+      <p><strong>About:</strong> A tool that generates synthetic medical images for training purposes using generative AI techniques.</p>
+      <p><strong>My Role:</strong> Built the generative model and deployed the application on Render for scalable access.</p>
+      <div class="tech-stack">
+        <span>Python</span>
+        <span>PyTorch</span>
+        <span>Google GenAI</span>
+        <span>Render</span>
+      </div>
+      <p><a href="https://survey-email-generator.onrender.com/" target="_blank">Link to Project</a></p>
+    </div>
+    <div class="project-item">
+      <h2>Project 6</h2>
+      <p><strong>About:</strong> A placeholder project currently in development, focusing on innovative solutions (details to be updated).</p>
+      <p><strong>My Role:</strong> Leading the initial design and prototyping phase.</p>
+      <div class="tech-stack">
+        <span>TBD</span>
+      </div>
+      <p><a href="#" target="_blank">Link to Project (Coming Soon)</a></p>
+    </div>
+  </div>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ca8a04' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.8, random: false },
+        size: { value: 5, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#ca8a04',
+          opacity: 0.6,
+          width: 2
+        },
+        move: {
+          enable: true,
+          speed: 3,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'grab' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 140, line_linked: { opacity: 1 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>

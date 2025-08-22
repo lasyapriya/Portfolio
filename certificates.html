@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {   
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background-size: cover;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    .heading-wrapper {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .heading-wrapper h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .cert-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding-bottom: 20px;
+    }
+    .cert-item {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .cert-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .cert-item img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      object-fit: contain;
+    }
+    .cert-item span {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 15px;
+      overflow: auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .close-btn:hover {
+      background: rgba(255, 0, 0, 0.2);
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="heading-wrapper">
+    <h1>Certifications</h1>
+  </div>
+  <div class="cert-container">
+    <div class="cert-grid">
+      <div class="cert-item" onclick="openModal('cert1')"><span>Certification 1</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\aicte.png" alt="AICTE Virtual Internship" id="cert1"></div></div>
+      <div class="cert-item" onclick="openModal('cert2')"><span>Certification 2</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\cisco_cpp.png" alt="CISCO NET ACAD" id="cert2"></div></div>
+      <div class="cert-item" onclick="openModal('cert3')"><span>Certification 3</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\cisco_python.jpg" alt="CISCO NET ACAD" id="cert3"></div></div>
+      <div class="cert-item" onclick="openModal('cert4')"><span>Certification 4</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\flipkart.png" alt="Flipkart RunAway" id="cert4"></div></div>
+      <div class="cert-item" onclick="openModal('cert5')"><span>Certification 5</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\google_cloud1.png" alt="Google cloud" id="cert5"></div></div>
+      <div class="cert-item" onclick="openModal('cert6')"><span>Certification 6</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\google_cloud2.png" alt="Google cloud" id="cert6"></div></div>
+      <div class="cert-item" onclick="openModal('cert7')"><span>Certification 7</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\google_cloud3.png" alt="Google cloud" id="cert7"></div></div>
+      <div class="cert-item" onclick="openModal('cert8')"><span>Certification 8</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\google_cloud4.png" alt="Google cloud" id="cert8"></div></div>
+      <div class="cert-item" onclick="openModal('cert9')"><span>Certification 9</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\nptel_cloud,iot.png" alt="NPTEL" id="cert9"></div></div>
+      <div class="cert-item" onclick="openModal('cert10')"><span>Certification 10</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\nptel_cloud.png" alt="NPTEL" id="cert10"></div></div>
+      <div class="cert-item" onclick="openModal('cert11')"><span>Certification 11</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\nptel_os.png" alt="NPTEL" id="cert11"></div></div>
+      <div class="cert-item" onclick="openModal('cert12')"><span>Certification 12</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\python_quiz.png" alt="Quiz" id="cert12"></div></div>
+      <div class="cert-item" onclick="openModal('cert13')"><span>Certification 13</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\tata_crucible.png" alt="Tata Crucible" id="cert13"></div></div>
+      <div class="cert-item" onclick="openModal('cert14')"><span>Certification 14</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\tata_imagination_challenge.png" alt="Tata Imagination" id="cert14"></div></div>
+      <div class="cert-item" onclick="openModal('cert15')"><span>Certification 15</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\unstop_hackathon.png" alt="hackathon" id="cert15"></div></div>
+      <div class="cert-item" onclick="openModal('cert16')"><span>Certification 16</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\unstop_talent_park.png" alt="hackathon" id="cert16"></div></div>
+      <div class="cert-item" onclick="openModal('cert17')"><span>Certification 17</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\unstop_talent2.png" alt="Quiz" id="cert17"></div></div>
+      <div class="cert-item" onclick="openModal('cert18')"><span>Certification 18</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\moc.jpeg" alt="Semi Finalist" id="cert18"></div></div>
+      <div class="cert-item" onclick="openModal('cert19')"><span>Certification 19</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\bodha_soft.jpeg" alt="Competitive Coding" id="cert19"></div></div>
+      <div class="cert-item" onclick="openModal('cert20')"><span>Certification 20</span><div><img src="C:\Users\lasya\Desktop\me\tech_images\cisco_badge.jpeg" alt="Cisco NetAcad" id="cert20"></div></div>
+    </div>
+  </div>
+  <div class="modal" id="certModal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+      <img src="#" alt="Full Certificate" id="modalImage">
+    </div>
+  </div>
+
+  <script>
+    function openModal(certId) {
+      const modal = document.getElementById('certModal');
+      const modalImage = document.getElementById('modalImage');
+      const certImage = document.getElementById(certId);
+      modalImage.src = certImage.src;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('certModal');
+      modal.classList.remove('active');
+    }
+
+    // Close modal when clicking outside
+
+    // <!-- https: //lasyapriya.github.io/Portfolio/ -->
+    window.onclick = function(event) {
+      const modal = document.getElementById('certModal');
+      if (event.target === modal) {
+        modal.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manaswini’s Cartoon Portfolio</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+    #intro-animation-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #000000;
+      z-index: 10000;
+      display: none; /* Initially hidden */
+    }
+    .video-background, .gif-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    .content-overlay {
+      position: relative;
+      min-height: 100vh;
+      background: rgba(255, 255, 255, 0.3);
+      opacity: 0; /* Start hidden for wave animation */
+      animation: waveIn 1.5s ease-out forwards; /* Wave animation on load or return */
+    }
+    @keyframes waveIn {
+      0% { opacity: 0; transform: translateY(100px) skewY(5deg); }
+      50% { opacity: 0.5; transform: translateY(-20px) skewY(-2deg); }
+      100% { opacity: 1; transform: translateY(0) skewY(0); }
+    }
+    .creeper {
+      position: absolute;
+      background: url('https://cdn.pixabay.com/photo/2017/01/29/21/38/ornament-2019452_1280.png') repeat-y;
+      width: 100px;
+      height: 150%;
+      background-size: 100% auto;
+      animation: creep 6s infinite ease-in-out;
+    }
+    @keyframes creep {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+    .heading-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .flower-button {
+      position: relative;
+      padding: 20px 40px;
+      border: 6px solid #FFD700;
+      background: linear-gradient(45deg, #4A1F50, #5C4033);
+      border-radius: 50px;
+      color: #FFFFFF;
+      font-size: 2rem;
+      font-weight: bold;
+      overflow: hidden;
+      cursor: pointer;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+    .flower-button::before {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: url('https://cdn.pixabay.com/photo/2017/05/27/22/00/flower-2349574_1280.png') no-repeat;
+      background-size: contain;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.7;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .flower-button:hover::before, .flower-button:focus::before {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+    .flower-button:hover {
+      transform: scale(1.05);
+    }
+    .section {
+      position: relative;
+      padding: 60px 20px;
+      background: transparent;
+      border-radius: 20px;
+      margin: 20px;
+      width: calc(50% - 40px); /* Two sections per row with spacing */
+      border: 4px solid #4CAF50;
+      text-align: center;
+      display: inline-block;
+      vertical-align: top;
+      min-height: 300px; /* Ensure consistent height */
+    }
+    .video-section, .gif-section {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+    .video-section video, .gif-section img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    #coding-platforms .coding-gif {
+      top: -20%;
+    }
+    .video-overlay {
+      position: relative;
+      min-height: 100%;
+    }
+    @keyframes bloom {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+    .flower-bg {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="%23F48FB1"/></svg>') no-repeat;
+      animation: float 8s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+      100% { transform: translate(0, 0); }
+    }
+    .heading-wrapper h2 {
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      margin: 0;
+    }
+    .heading-wrapper h1 {
+      font-size: 3.75rem;
+      color: #4B0082;
+      text-shadow: 
+        -1px -1px 0 #FFD700,
+         1px -1px 0 #FFD700,
+         -1px 1px 0 #FFD700,
+          1px 1px 0 #FFD700,
+         -2px 0 0 #FFD700,
+          2px 0 0 #FFD700,
+          0 -2px 0 #FFD700,
+          0 2px 0 #FFD700,
+          -1.5px -1.5px 0 #FFD700,
+           1.5px -1.5px 0 #FFD700,
+           -1.5px 1.5px 0 #FFD700,
+            1.5px 1.5px 0 #FFD700;
+    }
+    .heading-wrapper h2 {
+      font-size: 2.5rem;
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #660033, #5C4033);
+      border: 6px solid #FFD700;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: bounce 2s infinite;
+      display: inline-block;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .intro-card {
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+      border: 2px solid #FFD700;
+      border-radius: 20px;
+      padding: 20px 30px;
+      max-width: 650px;
+      margin: 24px auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      min-height: 150px;
+    }
+    .intro-card:hover {
+      transform: scale(1.02);
+    }
+    .intro-card p {
+      font-size: 1.5rem;
+      color: #D81B60;
+      text-shadow: 1px 1px 2px #FFE082;
+      line-height: 1.6;
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .intro-card p {
+        font-size: 1.25rem;
+      }
+      .section {
+        width: 100%; /* Stack sections vertically on mobile */
+        margin: 10px 0;
+      }
+    }
+    .magic-text {
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .intro-text .magic-text:nth-child(1) { animation-delay: 0s; }
+    .intro-text .magic-text:nth-child(2) { animation-delay: 0.5s; }
+    .intro-text .magic-text:nth-child(3) { animation-delay: 1s; }
+    .intro-text .magic-text:nth-child(4) { animation-delay: 1.5s; }
+  </style>
+</head>
+<body>
+  <!-- Holographic Grid Animation Container -->
+  <div id="intro-animation-container"></div>
+
+  <!-- Hero Section with Video Background -->
+  <section class="min-h-screen relative">
+    <video autoplay muted loop class="video-background">
+      <source src="https://cdn.pixabay.com/video/2025/03/29/268528_large.mp4" type="video/mp4">
+    </video>
+    <div class="content-overlay flex items-center justify-center text-center">
+      <div class="z-10">
+        <div class="heading-wrapper">
+          <h1 class="text-6xl font-bold">Welcome to My World</h1>
+        </div>
+        <div class="intro-card relative" id="intro-text">
+          <div class="intro-text">
+            <p class="magic-text">Hi, I’m Manaswini Sri Lasya Priya,</p>
+            <p class="magic-text">a Computer Science undergraduate with a passion for crafting dynamic web applications,</p>
+            <p class="magic-text">diving into data science, and mastering Java.</p>
+            <p class="magic-text">Explore my portfolio to discover more about my journey and creations!</p>
+          </div>
+          <div class="flower-bg absolute top-0 left-0" style="transform: translate(-50%, -50%);"></div>
+          <div class="flower-bg absolute bottom-0 right-0" style="transform: translate(50%, 50%);"></div>
+        </div>
+        <a href="#" class="flower-button mt-6 inline-block" onclick="scrollToSections(event)">Explore My Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections Container for Grid Layout -->
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap justify-center">
+      <!-- Certifications Section -->
+      <section id="certifications" class="section gif-section">
+        <img src="https://documill.com/wp-content/uploads/2022/07/salesforce-certifications.gif" alt="Certifications Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="certificates.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Certifications</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="section video-section">
+        <video autoplay muted loop class="video-background">
+          <source src="https://cdn.pixabay.com/video/2019/09/12/26796-359604154_large.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="projects.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Projects</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Internships Section -->
+      <section id="internships" class="section gif-section">
+        <img src="https://cdn.dribbble.com/userupload/23717083/file/original-4b25943593af1b7129dea8de29ce1865.gif" alt="Internships Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="internships.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Internships</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Extra Curricular Certifications Section -->
+      <section id="extra-curricular-certifications" class="section gif-section">
+        <img src="https://i.pinimg.com/originals/2e/03/a2/2e03a23bee794a918664eb16968cf689.gif" alt="Extra Curricular Certifications Background" class="gif-background">
+        <div class="video-overlay">
+          <div class="heading-wrapper">
+            <a href="extra.html" style="text-decoration: none;">
+              <h2 class="text-5xl font-bold">Extra Curricular Certifications</h2>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Get in Touch Section -->
+  <section id="get-in-touch" class="min-h-screen flex items-center justify-center">
+    <div class="video-overlay w-full">
+      <div class="max-w-md mx-auto text-center">
+        <div class="heading-wrapper">
+          <h2 class="text-5xl font-bold">Get in Touch</h2>
+        </div>
+        <div class="content-card mt-6">
+          <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 border rounded-lg bg-white">
+          <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 border rounded-lg bg-white">
+          <textarea placeholder="Your Message" class="w-full p-3 mb-4 border rounded-lg h-32 bg-white"></textarea>
+          <button class="flower-button">Send Message</button>
+          <div class="flower-bg absolute top-10 right-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-purple-900 text-white text-center py-4 relative">
+    <p>© 2025 Manaswini Sri Lasya Priya. All rights reserved.</p>
+    <div class="flower-bg absolute top-2 left-10"></div>
+  </footer>
+
+  <script>
+    let particles = [];
+    let stars = [];
+    let gridNodes = [];
+    let phase = 'galaxy';
+    let burstTime = 0;
+    let textAlpha = 0;
+    let p5Instance = null; // To store the p5 instance and prevent reinitialization
+
+    // Use sessionStorage to track if intro has played
+    let introPlayed = sessionStorage.getItem('introPlayed') === 'true';
+
+    class Particle {
+      constructor() {
+        this.r = random(50, 150);
+        this.angle = random(TWO_PI);
+        this.speed = random(0.01, 0.03);
+        this.size = random(2, 5);
+      }
+      update() {
+        this.angle += this.speed;
+        this.x = width / 2 + this.r * cos(this.angle);
+        this.y = height / 2 + this.r * sin(this.angle);
+      }
+      draw() {
+        noStroke();
+        fill(255, 255, 200, 200);
+        ellipse(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    class Star {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = random(-5, 5);
+        this.vy = random(-5, 5);
+        this.size = random(2, 6);
+        this.alpha = 255;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.alpha -= 2;
+      }
+      draw() {
+        noStroke();
+        fill(255, 255, 200, this.alpha);
+        ellipse(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    class GridNode {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        let r = random(50, min(width, height) * 0.4);
+        let angle = random(TWO_PI);
+        this.targetX = width / 2 + r * cos(angle);
+        this.targetY = height / 2 + r * sin(angle);
+        this.size = random(3, 7);
+        this.hue = random(360);
+      }
+      update() {
+        this.x = lerp(this.x, this.targetX, 0.05);
+        this.y = lerp(this.y, this.targetY, 0.05);
+        this.hue = (this.hue + 1) % 360;
+      }
+      draw() {
+        noStroke();
+        fill(this.hue, 80, 100, 200);
+        ellipse(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    function setup() {
+      try {
+        createCanvas(windowWidth, windowHeight);
+        canvas.id = 'intro-canvas';
+        let container = document.getElementById('intro-animation-container');
+        if (container) {
+          container.innerHTML = '';
+          container.appendChild(canvas);
+          console.log("Setup complete: Canvas initialized with 200 galaxy particles at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        } else {
+          console.error("Intro animation container not found at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        }
+        colorMode(HSB, 360, 100, 100, 255);
+        for (let i = 0; i < 200; i++) {
+          particles.push(new Particle());
+        }
+      } catch (e) {
+        console.error("Setup error:", e.message, e.stack, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+      }
+    }
+
+    function draw() {
+      try {
+        background(0);
+        if (phase === 'galaxy' && !introPlayed) {
+          for (let p of particles) {
+            p.update();
+            p.draw();
+          }
+          if (frameCount > 180) {
+            phase = 'burst';
+            burstTime = frameCount;
+            for (let p of particles) {
+              stars.push(new Star(p.x, p.y));
+            }
+            particles = [];
+            console.log("Transition to burst phase at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+          }
+        } else if (phase === 'burst' && !introPlayed) {
+          for (let s of stars) {
+            s.update();
+            s.draw();
+          }
+          if (frameCount - burstTime > 120) {
+            phase = 'grid';
+            for (let s of stars) {
+              gridNodes.push(new GridNode(s.x, s.y));
+            }
+            stars = [];
+            console.log("Transition to grid phase with", gridNodes.length, "nodes at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+          }
+        } else if (phase === 'grid' && !introPlayed) {
+          for (let n of gridNodes) {
+            n.update();
+            n.draw();
+          }
+          for (let i = 0; i < gridNodes.length; i++) {
+            for (let j = i + 1; j < gridNodes.length && j < i + 5; j++) {
+              let d = dist(gridNodes[i].x, gridNodes[i].y, gridNodes[j].x, gridNodes[j].y);
+              if (d < 120) {
+                stroke(gridNodes[i].hue, 80, 100, 50);
+                line(gridNodes[i].x, gridNodes[i].y, gridNodes[j].x, gridNodes[j].y);
+              }
+            }
+          }
+          if (frameCount - burstTime > 240) {
+            phase = 'text';
+            console.log("Transition to text phase at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+          }
+        } else if (phase === 'text' && !introPlayed) {
+          for (let n of gridNodes) {
+            n.update();
+            n.draw();
+          }
+          for (let i = 0; i < gridNodes.length; i++) {
+            for (let j = i + 1; j < gridNodes.length && j < i + 5; j++) {
+              let d = dist(gridNodes[i].x, gridNodes[i].y, gridNodes[j].x, gridNodes[j].y);
+              if (d < 120) {
+                stroke(gridNodes[i].hue, 80, 100, 50);
+                line(gridNodes[i].x, gridNodes[i].y, gridNodes[j].x, gridNodes[j].y);
+              }
+            }
+          }
+          colorMode(RGB, 255, 255, 255, 255);
+          textAlpha = lerp(textAlpha, 255, 0.02);
+          fill(255, 255, 255, textAlpha);
+          textAlign(CENTER, CENTER);
+          textSize(64);
+          textStyle(BOLD);
+          drawingContext.shadowColor = 'rgba(0, 0, 0, 0.8)';
+          drawingContext.shadowBlur = 10;
+
+          let gradient = drawingContext.createLinearGradient(width / 2 - 200, 0, width / 2 + 200, 0);
+          gradient.addColorStop(0, '#800080');
+          gradient.addColorStop(0.5, '#FFD700');
+          gradient.addColorStop(1, '#800080');
+          drawingContext.fillStyle = gradient;
+          text("Welcome to My Portfolio", width / 2, height / 2 - 60);
+
+          textSize(36);
+          let gradient2 = drawingContext.createLinearGradient(width / 2 - 200, 0, width / 2 + 200, 0);
+          gradient2.addColorStop(0, '#00CED1');
+          gradient2.addColorStop(0.5, '#FF00FF');
+          gradient2.addColorStop(1, '#00CED1');
+          drawingContext.fillStyle = gradient2;
+          text("Showcasing My Journey & Achievements", width / 2, height / 2 + 60);
+
+          drawingContext.shadowBlur = 0;
+          colorMode(HSB, 360, 100, 100, 255);
+          if (textAlpha > 250) {
+            let container = document.getElementById('intro-animation-container');
+            if (container) {
+              container.style.transition = 'opacity 2s ease-out';
+              container.style.opacity = '0';
+              setTimeout(() => {
+                container.style.display = 'none';
+                noLoop();
+                introPlayed = true;
+                sessionStorage.setItem('introPlayed', 'true'); // Persist the flag
+                console.log("Intro animation completed, showing portfolio at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+              }, 2000);
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Draw error in phase", phase, ":", e.message, e.stack, "at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+      }
+    }
+
+    window.addEventListener('load', () => {
+      const introContainer = document.getElementById('intro-animation-container');
+      const contentOverlay = document.querySelector('.content-overlay');
+
+      if (!introPlayed) {
+        console.log("Starting intro animation at", new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        introContainer.style.display = 'block';
+        introContainer.style.opacity = '1';
+        p5Instance = new p5(() => {
+          setup();
+          draw();
+        });
+      } else {
+        contentOverlay.style.animation = 'waveIn 1.5s ease-out forwards'; // Apply wave animation on return
+      }
+
+      const flowers = document.querySelectorAll('.flower-bg');
+      flowers.forEach(flower => {
+        flower.style.animationDelay = `${Math.random() * 5}s`;
+      });
+
+      document.querySelectorAll('.flower-button').forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (button.textContent === 'Explore My Work') {
+            scrollToSections(e);
+          } else {
+            const bloom = button.querySelector('::before');
+            bloom.style.transform = 'translate(-50%, -50%) scale(1)';
+            bloom.style.opacity = '0.5';
+            setTimeout(() => {
+              bloom.style.transform = 'translate(-50%, -50%) scale(0)';
+              bloom.style.opacity = '0.7';
+            }, 1000);
+          }
+        });
+      });
+
+      function scrollToSections(event) {
+        event.preventDefault();
+        document.getElementById('certifications').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Handle back navigation from section pages
+      window.addEventListener('popstate', () => {
+        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+          if (p5Instance) p5Instance.noLoop(); // Stop any running p5 instance
+          introContainer.style.display = 'none';
+          contentOverlay.style.animation = 'waveIn 1.5s ease-out forwards';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
