@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Manaswini’s Publications</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Special Elite', cursive;
+      margin: 0;
+      padding: 0;
+      background: url('https://cdn.pixabay.com/photo/2015/12/03/08/50/paper-1074131_1280.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+    .content-overlay {
+      min-height: 100vh;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+    .heading-wrapper {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .heading-wrapper h1 {
+      font-size: 3.5rem;
+      color: #8B4513;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .intro-p {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      font-size: 1.25rem;
+      text-align: center;
+      color: #4B0082;
+    }
+    .section-card {
+      max-width: 800px;
+      margin: 0 auto 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #8B4513;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .section-card:hover {
+      transform: translateY(-5px);
+    }
+    .section-card h2 {
+      font-size: 2.25rem;
+      color: #8B4513;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+    }
+    .section-card h2::before {
+      content: '\f02d'; /* Font Awesome book icon */
+      font-family: 'Font Awesome 5 Free';
+      font-weight: 900;
+      display: block;
+      color: #DAA520;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .item-list li {
+      margin-bottom: 20px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #8B4513;
+      border-radius: 5px;
+    }
+    .item-button {
+      display: block;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      transition: background 0.3s ease;
+    }
+    /* Article Colors */
+    .item-button.color-1 { background: linear-gradient(to right, #2F4F4F, #4682B4); }
+    .item-button.color-1:hover { background: linear-gradient(to right, #4682B4, #2F4F4F); }
+    .item-button.color-2 { background: linear-gradient(to right, #F5F5DC, #D2B48C); color: #333; }
+    .item-button.color-2:hover { background: linear-gradient(to right, #D2B48C, #F5F5DC); }
+    .item-button.color-3 { background: linear-gradient(to right, #8B0000, #CD5C5C); }
+    .item-button.color-3:hover { background: linear-gradient(to right, #CD5C5C, #8B0000); }
+    .item-button.color-4 { background: linear-gradient(to right, #556B2F, #8FBC8F); }
+    .item-button.color-4:hover { background: linear-gradient(to right, #8FBC8F, #556B2F); }
+    /* Presentation Colors */
+    .item-button.pres-1 { background: linear-gradient(to right, #4B0082, #E6E6FA); }
+    .item-button.pres-1:hover { background: linear-gradient(to right, #E6E6FA, #4B0082); }
+    .item-button.pres-2 { background: linear-gradient(to right, #008080, #00CED1); }
+    .item-button.pres-2:hover { background: linear-gradient(to right, #00CED1, #008080); }
+    .item-button.pres-3 { background: linear-gradient(to right, #FF7F50, #FFDAB9); }
+    .item-button.pres-3:hover { background: linear-gradient(to right, #FFDAB9, #FF7F50); }
+    .item-button.pres-4 { background: linear-gradient(to right, #708090, #C0C0C0); }
+    .item-button.pres-4:hover { background: linear-gradient(to right, #C0C0C0, #708090); }
+    /* Default for Substack */
+    .item-button.default { background: linear-gradient(to right, #8B4513, #DAA520); }
+    .item-button.default:hover { background: linear-gradient(to right, #DAA520, #8B4513); }
+    .back-button {
+      display: inline-block;
+      margin: 40px auto 0;
+      padding: 10px 20px;
+      background: #4B0082;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .back-button:hover {
+      background: #6A1B9A;
+    }
+    @media (max-width: 768px) {
+      .heading-wrapper h1 {
+        font-size: 3rem;
+      }
+      .section-card h2 {
+        font-size: 2rem;
+      }
+      .item-button {
+        font-size: 1.25rem;
+      }
+      .intro-p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-overlay">
+    <div class="heading-wrapper">
+      <h1>My Publications</h1>
+    </div>
+    <p class="intro-p">
+      My passion for writing drives me to explore tech, creativity, and more. Here are my articles, presentations, and Substack publication, each crafted with dedication and insight.
+    </p>
+
+    <div class="section-card">
+      <h2>Articles</h2>
+      <ul class="item-list">
+        <li><a href="https://www.canva.com/design/DAGswo4dLls/WIJS2-W3ZWtHK9d-UszIHQ/edit?utm_content=DAGswo4dLls&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="item-button color-1">Promotion Article for Go Alpha Kids</a></li>
+        <li><a href="https://docs.google.com/document/d/1AS8yaqcnRg2g9toi2KfIN9k8z8KGkn2x/edit?usp=sharing&ouid=116348659882009359953&rtpof=true&sd=true" class="item-button color-2">Gaming Article on Effervon Apex</a></li>
+        <li><a href="https://drive.google.com/file/d/1VBEkbMToKuwvK5tG8swdfYZbgHZv2r1L/view?usp=sharing" class="item-button color-3">Gaming Article on PVP Ships for Combat</a></li>
+        <li><a href="https://drive.google.com/file/d/1blQGCkoo1SDXNZ56WlIolWCyeO8WZ_As/view?usp=sharing" class="item-button color-4">How to Become a CID Officer</a></li>
+        <li><a href="https://drive.google.com/file/d/1Zc88Sj8rb1Aeqfin-ED_t0Uh7NRTzaAy/view?usp=sharing" class="item-button color-1">Doctor Finder Pro Project Document</a></li>
+        <li><a href="https://drive.google.com/file/d/1P2MC-Xa97GW_agfa4cFyDIj-c6antNAJ/view?usp=sharing" class="item-button color-2">HCP Campaign Prediction Document</a></li>
+      </ul>
+    </div>
+
+    <div class="section-card">
+      <h2>Presentations</h2>
+      <ul class="item-list">
+        <li><a href="https://www.canva.com/design/DAGPM9TYF4k/YbRQ0ZQ2I7DPeWbxkEkWvw/edit?utm_content=DAGPM9TYF4k&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="item-button pres-1">About Zepto</a></li>
+        <li><a href="https://www.canva.com/design/DAGi4VmgRII/Pji3cQsJJMLbm0foFkMeWw/edit?utm_content=DAGi4VmgRII&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="item-button pres-2">Data Analytics Explained Simply</a></li>
+        <li><a href="https://www.canva.com/design/DAGiX9xlwlc/26FhNXieLG2jL71ERu6ZaA/edit?utm_content=DAGiX9xlwlc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="item-button pres-3">Data Science</a></li>
+        <li><a href="https://www.canva.com/design/DAGMVe-pA8w/lIT9nFdTQjnRiu4-tlSNQw/edit?utm_content=DAGMVe-pA8w&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="item-button pres-4">SWOT Analysis</a></li>
+        <li><a href="https://www.canva.com/design/DAGiXUWKjWg/R2-JoG8D7VrCrAC30igo_A/edit?utm_content=DAGiXUWKjWg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" class="item-button pres-1">Uber Trip Analysis Project</a></li>
+      </ul>
+    </div>
+
+    <div class="section-card">
+      <h2>Substack Publication</h2>
+      <ul class="item-list">
+        <li><a href="https://technicalwriter123.substack.com/p/google-supercharges-ai-search-with?r=64jo4f&utm_campaign=post&utm_medium=web&triedRedirect=true" class="item-button default">Google Supercharges AI Search with Gemini and Visual Upgrades</a></li>
+      </ul>
+    </div>
+
+    <div class="text-center">
+      <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+  </div>
+</body>
+</html>
