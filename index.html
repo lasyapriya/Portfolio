@@ -15,13 +15,13 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Cormorant Garamond', serif; background: var(--dark); color: var(--text); overflow-x: hidden; cursor: none; }
 
-    /* CURSOR */
+ /* CURSOR */
     .cursor { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999; transition: transform 0.15s ease; mix-blend-mode: difference; }
     .cursor-ring { width: 36px; height: 36px; border: 1px solid var(--gold); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99998; opacity: 0.5; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); }
-
+ 
     /* NOISE */
     body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9997; opacity: 0.5; }
-
+ 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; transition: all 0.5s ease; }
     nav.scrolled { background: rgba(10,10,10,0.92); backdrop-filter: blur(20px); padding: 18px 60px; border-bottom: 1px solid rgba(201,168,76,0.15); }
@@ -31,7 +31,7 @@
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 100%; height: 1px; background: var(--gold); transition: right 0.3s ease; }
     .nav-links a:hover { color: var(--gold); }
     .nav-links a:hover::after { right: 0; }
-
+ 
     /* HERO */
     #hero { min-height: 100vh; display: flex; align-items: flex-end; padding: 0 60px 80px; position: relative; overflow: hidden; }
     .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.18; filter: saturate(0); }
@@ -42,70 +42,228 @@
     .hero-name em { font-style: italic; color: var(--gold); }
     .hero-subtitle { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 300; color: var(--muted); font-style: italic; margin-top: 20px; opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards; }
     .hero-desc { max-width: 500px; margin-top: 28px; font-size: 1.05rem; line-height: 1.8; color: rgba(232,228,220,0.65); opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards; }
-
+ 
     /* HONORS BADGE */
     .honors-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 9px 18px; border: 1px solid rgba(201,168,76,0.5); background: rgba(201,168,76,0.07); font-family: 'Space Mono', monospace; font-size: 0.58rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; opacity: 0; animation: fadeUp 0.8s ease 1.0s forwards; position: relative; overflow: hidden; }
     .honors-badge::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent); animation: shimmer 3s infinite; }
     @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
-
+ 
     .hero-cta { display: inline-flex; align-items: center; gap: 14px; margin-top: 32px; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); text-decoration: none; opacity: 0; animation: fadeUp 0.8s ease 1.2s forwards; transition: gap 0.3s ease; }
     .hero-cta:hover { gap: 24px; }
     .hero-cta::before { content: ''; width: 40px; height: 1px; background: var(--gold); transition: width 0.3s ease; }
     .hero-cta:hover::before { width: 60px; }
-
+ 
     .hero-scroll { position: absolute; right: 60px; bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 12px; z-index: 2; opacity: 0; animation: fadeIn 1s ease 1.5s forwards; }
     .hero-scroll span { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 4px; color: var(--muted); text-transform: uppercase; writing-mode: vertical-rl; }
     .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease infinite; }
     @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
+ 
     /* MARQUEE */
     .marquee-wrap { overflow: hidden; border-top: 1px solid rgba(201,168,76,0.2); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 18px 0; background: var(--dark2); }
     .marquee-track { display: flex; animation: marquee 28s linear infinite; white-space: nowrap; }
     .marquee-item { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); padding: 0 40px; flex-shrink: 0; }
     .marquee-item span { color: var(--gold); margin-right: 40px; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
+ 
     /* WORK */
-    #work { padding: 100px 60px; }
-    .section-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 50px; display: flex; align-items: center; gap: 20px; }
-    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+   /* WORK */
+#work { 
+  padding: 80px 40px; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+}
 
-    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.section-label { 
+  font-family: 'Space Mono', monospace; 
+  font-size: 0.6rem; 
+  letter-spacing: 5px; 
+  text-transform: uppercase; 
+  color: var(--gold); 
+  margin-bottom: 50px; 
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+}
 
-    .work-card { position: relative; overflow: hidden; display: block; text-decoration: none; background: var(--dark3); cursor: none; aspect-ratio: 4/5; }
-    .work-card:nth-child(4) { aspect-ratio: 5/4; grid-column: span 2; }
+.section-label::before { 
+  content: ''; 
+  width: 30px; 
+  height: 1px; 
+  background: var(--gold); 
+}
 
-    /* Per-card canvas */
-    .work-card canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; pointer-events: none; z-index: 1; opacity: 0; transition: opacity 0.5s ease; }
-    .work-card:hover canvas { opacity: 1; }
+/* ✅ FIX 1: 2 CARDS PER ROW + BETTER SPACING */
+.work-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px; 
+}
 
-    .card-bg { position: absolute; inset: 0; z-index: 2; transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); }
-    .work-card:hover .card-bg { transform: scale(1.07); }
-    .card-gif { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: saturate(0.3); transition: opacity 0.5s ease, filter 0.5s ease; }
-    .work-card:hover .card-gif { opacity: 0.55; filter: saturate(0.6); }
-    .card-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: saturate(0.3); transition: opacity 0.5s ease, filter 0.5s ease; }
-    .work-card:hover .card-video { opacity: 0.55; filter: saturate(0.6); }
+/* ✅ FIX 2: REDUCE HEIGHT */
+.work-card { 
+  position: relative; 
+  overflow: hidden; 
+  display: block; 
+  text-decoration: none; 
+  background: var(--dark3); 
+  cursor: none; 
+  aspect-ratio: 5/4; 
+}
 
-    .card-overlay { position: absolute; inset: 0; z-index: 3; background: linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.4) 55%, rgba(10,10,10,0.15) 100%); }
-    .work-card:hover .card-overlay { background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.3) 55%, rgba(10,10,10,0.05) 100%); }
+/* ❌ IMPORTANT: wide card rule removed completely */
 
-    .card-glow { position: absolute; inset: 0; z-index: 4; border: 1px solid transparent; transition: border-color 0.5s ease, box-shadow 0.5s ease; pointer-events: none; }
-    .work-card:hover .card-glow { border-color: rgba(201,168,76,0.4); box-shadow: inset 0 0 80px rgba(201,168,76,0.07); }
+/* Per-card canvas */
+.work-card canvas { 
+  position: absolute; 
+  inset: 0; 
+  width: 100% !important; 
+  height: 100% !important; 
+  pointer-events: none; 
+  z-index: 1; 
+  opacity: 0; 
+  transition: opacity 0.5s ease; 
+}
 
-    .card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 28px; z-index: 5; transform: translateY(6px); transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
-    .work-card:hover .card-content { transform: translateY(0); }
-    .card-number { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; opacity: 0; transform: translateY(8px); transition: all 0.4s ease; }
-    .work-card:hover .card-number { opacity: 1; transform: translateY(0); }
-    .card-title { font-size: 1.85rem; font-weight: 300; color: var(--cream); line-height: 1.1; letter-spacing: -0.5px; }
-    .card-title em { font-style: italic; color: var(--gold); }
-    .card-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.5rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 8px; opacity: 0; transition: opacity 0.4s ease 0.1s; }
-    .work-card:hover .card-tag { opacity: 1; }
-    .card-arrow { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; border: 1px solid rgba(201,168,76,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.7) rotate(-30deg); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); color: var(--gold); font-size: 1rem; z-index: 6; }
-    .work-card:hover .card-arrow { opacity: 1; transform: scale(1) rotate(0deg); }
+.work-card:hover canvas { opacity: 1; }
 
+.card-bg { 
+  position: absolute; 
+  inset: 0; 
+  z-index: 2; 
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1); 
+}
+
+.work-card:hover .card-bg { transform: scale(1.07); }
+
+/* ✅ FIX 3: REMOVE GIF VISUAL */
+.card-gif { 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(255,255,255,0.02); 
+}
+
+.card-video { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  opacity: 0.35; 
+  filter: saturate(0.3); 
+  transition: opacity 0.5s ease, filter 0.5s ease; 
+}
+
+.work-card:hover .card-video { 
+  opacity: 0.55; 
+  filter: saturate(0.6); 
+}
+
+.card-overlay { 
+  position: absolute; 
+  inset: 0; 
+  z-index: 3; 
+  background: linear-gradient(to top, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.4) 55%, rgba(10,10,10,0.15) 100%); 
+}
+
+.work-card:hover .card-overlay { 
+  background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.3) 55%, rgba(10,10,10,0.05) 100%); 
+}
+
+.card-glow { 
+  position: absolute; 
+  inset: 0; 
+  z-index: 4; 
+  border: 1px solid transparent; 
+  transition: border-color 0.5s ease, box-shadow 0.5s ease; 
+  pointer-events: none; 
+}
+
+.work-card:hover .card-glow { 
+  border-color: rgba(201,168,76,0.4); 
+  box-shadow: inset 0 0 80px rgba(201,168,76,0.07); 
+}
+
+.card-content { 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  right: 0; 
+  padding: 28px 24px; 
+  z-index: 5; 
+  transform: translateY(6px); 
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1); 
+}
+
+.work-card:hover .card-content { transform: translateY(0); }
+
+.card-number { 
+  font-family: 'Space Mono', monospace; 
+  font-size: 0.55rem; 
+  letter-spacing: 3px; 
+  color: var(--gold); 
+  margin-bottom: 8px; 
+  opacity: 0; 
+  transform: translateY(8px); 
+  transition: all 0.4s ease; 
+}
+
+.work-card:hover .card-number { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+/* ✅ FIX 4: BIGGER TITLE */
+.card-title { 
+  font-size: 2.4rem; 
+  font-weight: 300; 
+  color: var(--cream); 
+  line-height: 1.1; 
+  letter-spacing: -0.5px; 
+}
+
+.card-title em { font-style: italic; color: var(--gold); }
+
+.card-tag { 
+  display: inline-block; 
+  font-family: 'Space Mono', monospace; 
+  font-size: 0.5rem; 
+  letter-spacing: 2px; 
+  color: var(--muted); 
+  text-transform: uppercase; 
+  margin-top: 8px; 
+  opacity: 0; 
+  transition: opacity 0.4s ease 0.1s; 
+}
+
+.work-card:hover .card-tag { opacity: 1; }
+
+.card-arrow { 
+  position: absolute; 
+  top: 20px; 
+  right: 20px; 
+  width: 36px; 
+  height: 36px; 
+  border: 1px solid rgba(201,168,76,0.3); 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  opacity: 0; 
+  transform: scale(0.7) rotate(-30deg); 
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
+  color: var(--gold); 
+  font-size: 0.9rem; 
+  z-index: 6; 
+}
+
+.work-card:hover .card-arrow { 
+  opacity: 1; 
+  transform: scale(1) rotate(0deg); 
+}
+
+/* Coding platforms special */
+ 
     /* Coding platforms special */
     #card-coding:hover { box-shadow: 0 0 50px rgba(201,168,76,0.12); }
-
+ 
     /* ABOUT */
     #about { padding: 120px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; border-top: 1px solid rgba(201,168,76,0.1); }
     .about-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1; color: var(--cream); letter-spacing: -1px; margin-bottom: 30px; }
@@ -125,7 +283,7 @@
     .about-inner-frame { position: relative; z-index: 1; width: 100%; height: 100%; background: var(--dark3); overflow: hidden; }
     .about-inner-frame video { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; filter: saturate(0.4); }
     .about-overlay-text { position: absolute; bottom: 28px; left: 28px; font-size: 0.65rem; font-family: 'Space Mono', monospace; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
-
+ 
     /* CONTACT */
     #contact { padding: 120px 60px; border-top: 1px solid rgba(201,168,76,0.1); text-align: center; }
     .contact-title { font-size: clamp(3rem, 7vw, 7rem); font-weight: 300; color: var(--cream); letter-spacing: -2px; line-height: 0.9; margin-bottom: 50px; }
@@ -141,37 +299,62 @@
     .submit-btn:hover { background: var(--gold); color: var(--dark); }
     .submit-btn svg { transition: transform 0.3s ease; }
     .submit-btn:hover svg { transform: translateX(4px); }
-
+ 
     /* FOOTER */
     footer { padding: 40px 60px; border-top: 1px solid rgba(201,168,76,0.1); display: flex; justify-content: space-between; align-items: center; }
     .footer-left { font-size: 0.85rem; color: var(--muted); }
     .footer-right { font-family: 'Space Mono', monospace; font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-
+ 
     /* ANIMATIONS */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+  /* ===== YOUR MAIN STYLES ===== */
 
-    @media (max-width: 900px) {
-      nav { padding: 20px 24px; } nav.scrolled { padding: 14px 24px; }
-      #hero { padding: 0 24px 60px; } .hero-scroll { display: none; }
-      #work { padding: 60px 24px; }
-      .work-grid { grid-template-columns: 1fr 1fr; }
-      .work-card:nth-child(4) { grid-column: span 1; aspect-ratio: 4/5; }
-      #about { padding: 60px 24px; grid-template-columns: 1fr; gap: 50px; }
-      .about-image-frame { max-width: 100%; }
-      #contact { padding: 60px 24px; } footer { padding: 30px 24px; flex-direction: column; gap: 12px; text-align: center; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px) { .work-grid { grid-template-columns: 1fr; } .work-card:nth-child(4) { grid-column: span 1; } }
+/* ✅ CHANGE: GRID */
+.work-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 3px; 
+}
+
+/* ❌ REMOVE this completely everywhere */
+/* .work-card:nth-child(4) { ... } */
+
+/* ✅ BIGGER TITLE */
+.card-title {
+  font-size: 2.4rem;
+}
+
+/* ✅ REMOVE GIF LOOK */
+.card-gif {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.02);
+}
+
+
+/* ===== MEDIA QUERIES (keep at end ALWAYS) ===== */
+
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: 1fr 1fr; }
+
+  /* ❌ REMOVE THIS LINE */
+  /* .work-card:nth-child(4) { ... } */
+}
+
+@media (max-width: 560px) {
+  .work-grid { grid-template-columns: 1fr; }
+}
   </style>
 </head>
-<body>
 
+<body>
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
+ 
 <nav id="nav">
   <div class="nav-logo">MSLP</div>
   <ul class="nav-links">
@@ -180,7 +363,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
-
+ 
 <section id="hero">
   <video autoplay muted loop playsinline class="hero-video">
     <source src="https://cdn.pixabay.com/video/2025/03/29/268528_large.mp4" type="video/mp4">
@@ -199,7 +382,7 @@
   </div>
   <div class="hero-scroll"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
-
+ 
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span class="marquee-item"><span>◆</span> Web Development</span>
@@ -223,7 +406,7 @@
     <span class="marquee-item"><span>◆</span> Google Cloud</span>
     <span class="marquee-item"><span>◆</span> Class of 2026</span>
   </div>
-</div>
+<!-- EVERYTHING ABOVE WORK SECTION SAME -->
 
 <section id="work">
   <div class="section-label">Selected Work</div>
@@ -232,7 +415,7 @@
     <!-- 01 CERTIFICATIONS -->
     <a href="certificates.html" class="work-card" id="card-certs">
       <canvas id="cv-certs"></canvas>
-      <div class="card-bg"><img src="https://documill.com/wp-content/uploads/2022/07/salesforce-certifications.gif" class="card-gif" alt=""></div>
+      <div class="card-bg"><div class="card-gif"></div></div>
       <div class="card-overlay"></div><div class="card-glow"></div>
       <div class="card-arrow">↗</div>
       <div class="card-content">
@@ -242,72 +425,63 @@
       </div>
     </a>
 
-    <!-- 02 PROJECTS -->
-    <a href="projects.html" class="work-card" id="card-projects">
-      <canvas id="cv-projects"></canvas>
-      <div class="card-bg">
-        <video autoplay muted loop playsinline class="card-video">
-          <source src="https://cdn.pixabay.com/video/2019/09/12/26796-359604154_large.mp4" type="video/mp4">
-        </video>
-      </div>
+    <!-- 02 CODING -->
+    <a href="codingp.html" class="work-card" id="card-coding">
+      <canvas id="cv-coding"></canvas>
+      <div class="card-bg"><div class="card-gif"></div></div>
       <div class="card-overlay"></div><div class="card-glow"></div>
       <div class="card-arrow">↗</div>
       <div class="card-content">
         <div class="card-number">02</div>
-        <h3 class="card-title"><em>Pro</em>jects</h3>
-        <span class="card-tag">Built & Deployed</span>
+        <h3 class="card-title"><em>Coding</em> Platforms</h3>
       </div>
     </a>
 
     <!-- 03 INTERNSHIPS -->
     <a href="internships.html" class="work-card" id="card-intern">
       <canvas id="cv-intern"></canvas>
-      <div class="card-bg"><img src="https://cdn.dribbble.com/userupload/23717083/file/original-4b25943593af1b7129dea8de29ce1865.gif" class="card-gif" alt=""></div>
+      <div class="card-bg"><div class="card-gif"></div></div>
       <div class="card-overlay"></div><div class="card-glow"></div>
       <div class="card-arrow">↗</div>
       <div class="card-content">
         <div class="card-number">03</div>
         <h3 class="card-title"><em>Intern</em>ships</h3>
-        <span class="card-tag">Industry Experience</span>
       </div>
     </a>
 
-    <!-- 04 EXTRA CURRICULAR (wide) -->
-    <a href="extra.html" class="work-card" id="card-extra">
-      <canvas id="cv-extra"></canvas>
-      <div class="card-bg"><img src="https://i.pinimg.com/originals/2e/03/a2/2e03a23bee794a918664eb16968cf689.gif" class="card-gif" alt=""></div>
+    <!-- 04 PROJECTS -->
+    <a href="projects.html" class="work-card" id="card-projects">
+      <canvas id="cv-projects"></canvas>
+      <div class="card-bg"><div class="card-gif"></div></div>
       <div class="card-overlay"></div><div class="card-glow"></div>
       <div class="card-arrow">↗</div>
       <div class="card-content">
         <div class="card-number">04</div>
-        <h3 class="card-title"><em>Extra</em> Curricular</h3>
-        <span class="card-tag">Beyond The Classroom</span>
+        <h3 class="card-title"><em>Pro</em>jects</h3>
       </div>
     </a>
 
-    <!-- 05 CODING PLATFORMS -->
-    <a href="codingp.html" class="work-card" id="card-coding">
-      <canvas id="cv-coding"></canvas>
-      <div class="card-bg"><img src="https://i.pinimg.com/originals/e9/f7/c5/e9f7c599af092d6317691eb406ad4258.gif" class="card-gif" alt=""></div>
+    <!-- 05 EXTRA -->
+    <a href="extra.html" class="work-card" id="card-extra">
+      <canvas id="cv-extra"></canvas>
+      <div class="card-bg"><div class="card-gif"></div></div>
       <div class="card-overlay"></div><div class="card-glow"></div>
       <div class="card-arrow">↗</div>
       <div class="card-content">
         <div class="card-number">05</div>
-        <h3 class="card-title"><em>Coding</em> Platforms</h3>
-        <span class="card-tag">LeetCode · HackerRank & More</span>
+        <h3 class="card-title"><em>Extra</em> Curricular</h3>
       </div>
     </a>
 
-    <!-- 06 MY WRITINGS -->
+    <!-- 06 WRITINGS -->
     <a href="writings.html" class="work-card" id="card-writings">
       <canvas id="cv-writings"></canvas>
-      <div class="card-bg"><img src="https://static01.nyt.com/images/2018/03/08/business/08State/8State-articleLarge.gif?quality=75&auto=webp&disable=upscale" class="card-gif" alt=""></div>
+      <div class="card-bg"><div class="card-gif"></div></div>
       <div class="card-overlay"></div><div class="card-glow"></div>
       <div class="card-arrow">↗</div>
       <div class="card-content">
         <div class="card-number">06</div>
         <h3 class="card-title"><em>My</em> Writings</h3>
-        <span class="card-tag">Thoughts & Articles</span>
       </div>
     </a>
 
@@ -345,7 +519,7 @@
     </div>
   </div>
 </section>
-
+ 
 <section id="contact">
   <div class="section-label" style="justify-content:center;margin-bottom:30px;">Get In Touch</div>
   <h2 class="contact-title reveal">Let's <em>connect</em><br>& create</h2>
@@ -358,12 +532,12 @@
     <button class="submit-btn">Send Message <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
 </section>
-
+ 
 <footer>
   <div class="footer-left">© 2026 Manaswini Sri Lasya Priya. All rights reserved.</div>
   <div class="footer-right">B.Tech CS · Data Science (Hons)</div>
 </footer>
-
+ 
 <script>
 // ── CURSOR ──
 const cursor = document.getElementById('cursor');
@@ -372,17 +546,17 @@ let mouseX=0,mouseY=0,ringX=0,ringY=0;
 document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;cursor.style.left=mouseX-4+'px';cursor.style.top=mouseY-4+'px';});
 (function animRing(){ringX+=(mouseX-ringX-18)*0.12;ringY+=(mouseY-ringY-18)*0.12;ring.style.left=ringX+'px';ring.style.top=ringY+'px';requestAnimationFrame(animRing);})();
 document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';ring.style.opacity='0.8';});el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.transform='scale(1)';ring.style.opacity='0.5';});});
-
+ 
 // ── NAV ──
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
-
+ 
 // ── REVEALS ──
 new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*120);}),{threshold:0.15}).observe&&document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.15}).observe(el));
-
+ 
 // ── CARD STAGGER ──
 document.querySelectorAll('.work-card').forEach((c,i)=>{c.style.opacity='0';c.style.transform='translateY(30px)';c.style.transition='opacity 0.7s ease, transform 0.7s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease';new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.transitionDelay=(i*0.09)+'s';e.target.style.opacity='1';e.target.style.transform='translateY(0)';}}),{threshold:0.1}).observe(c);});
-
+ 
 // ── CANVAS HELPER ──
 function mkCanvas(canvasId, cardId, drawFn) {
   const cv = document.getElementById(canvasId);
@@ -397,7 +571,7 @@ function mkCanvas(canvasId, cardId, drawFn) {
   let t=0;
   function loop(){if(!active){raf=null;return;}t++;drawFn(ctx,cv,t);raf=requestAnimationFrame(loop);}
 }
-
+ 
 // ── 01 CERTIFICATIONS: Orbiting golden rings + starfield ──
 mkCanvas('cv-certs','card-certs',(ctx,cv,t)=>{
   ctx.clearRect(0,0,cv.width,cv.height);
@@ -420,7 +594,7 @@ mkCanvas('cv-certs','card-certs',(ctx,cv,t)=>{
   for(let i=0;i<6;i++){ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,16);ctx.strokeStyle='#C9A84C';ctx.lineWidth=1;ctx.stroke();ctx.rotate(Math.PI/3);}
   ctx.restore();ctx.globalAlpha=1;
 });
-
+ 
 // ── 02 PROJECTS: Matrix / code rain ──
 mkCanvas('cv-projects','card-projects',(ctx,cv,t)=>{
   if(!ctx._drops){const fs=11;const cols=Math.floor(cv.width/fs);ctx._drops=Array.from({length:cols},()=>Math.random()*-60);ctx._fs=fs;}
@@ -436,7 +610,7 @@ mkCanvas('cv-projects','card-projects',(ctx,cv,t)=>{
     ctx._drops[i]+=0.55;
   });
 });
-
+ 
 // ── 03 INTERNSHIPS: Layered sine waves ──
 mkCanvas('cv-intern','card-intern',(ctx,cv,t)=>{
   ctx.clearRect(0,0,cv.width,cv.height);
@@ -452,7 +626,7 @@ mkCanvas('cv-intern','card-intern',(ctx,cv,t)=>{
     ctx.strokeStyle=`rgba(201,168,76,${w.a*2.8})`;ctx.lineWidth=1.2;ctx.stroke();
   });
 });
-
+ 
 // ── 04 EXTRA CURRICULAR: Firework particle bursts ──
 mkCanvas('cv-extra','card-extra',(ctx,cv,t)=>{
   ctx.clearRect(0,0,cv.width,cv.height);
@@ -469,7 +643,7 @@ mkCanvas('cv-extra','card-extra',(ctx,cv,t)=>{
     p.x+=p.vx;p.y+=p.vy;p.vy+=0.05;p.vx*=0.98;p.life-=p.decay;
   });
 });
-
+ 
 // ── 05 CODING PLATFORMS: Terminal grid + scan line + binary pulse ──
 mkCanvas('cv-coding','card-coding',(ctx,cv,t)=>{
   ctx.clearRect(0,0,cv.width,cv.height);
@@ -491,7 +665,7 @@ mkCanvas('cv-coding','card-coding',(ctx,cv,t)=>{
   if(!ctx._bits)ctx._bits=Array.from({length:8},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,ch:Math.random()>0.5?'1':'0',life:Math.random(),sp:0.008+Math.random()*0.01}));
   ctx._bits.forEach(b=>{b.life+=b.sp;if(b.life>1){b.life=0;b.x=Math.random()*cv.width;b.y=Math.random()*cv.height;b.ch=Math.random()>0.5?'1':'0';}const a=Math.sin(b.life*Math.PI)*0.4;ctx.font='10px Space Mono,monospace';ctx.fillStyle=`rgba(201,168,76,${a})`;ctx.fillText(b.ch,b.x,b.y);});
 });
-
+ 
 // ── 06 MY WRITINGS: Ink ripples + text lines ──
 mkCanvas('cv-writings','card-writings',(ctx,cv,t)=>{
   ctx.clearRect(0,0,cv.width,cv.height);
@@ -509,5 +683,8 @@ mkCanvas('cv-writings','card-writings',(ctx,cv,t)=>{
   ctx.beginPath();ctx.arc(nx,ny,3,0,Math.PI*2);ctx.fillStyle='rgba(201,168,76,0.65)';ctx.shadowColor='#C9A84C';ctx.shadowBlur=14;ctx.fill();ctx.shadowBlur=0;
 });
 </script>
+
+<!-- EVERYTHING BELOW SAME (JS, animations untouched) -->
+
 </body>
 </html>
